@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  ocr-api-nest-service:
+    build: .
+    environment:
+      - PORT=3000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - '4979:3000'
+    restart: on-failure:5
+    command:
+      [
+        sh,
+        -c,
+        'cd /usr/src/app && npm install && npm run build && npm run start:prod',
+      ]
